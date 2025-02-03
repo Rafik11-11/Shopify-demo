@@ -17,12 +17,12 @@ const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // Replace with your API key
 });
 const assistantId = ASSISTANT_ID; // Replace with your assistant ID
-async function queryAssistant(userQuery) {
+async function queryAssistant(userQuery,assis_id) {
 
   try {
     // Create a thread and run the assistant in a single request
     const run = await openai.beta.threads.createAndRun({
-      assistant_id: assistantId,
+      assistant_id: assis_id,
       thread: {
         messages: [
           {

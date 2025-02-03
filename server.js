@@ -35,8 +35,12 @@ const smartSearch = async (req, res) => {
             console.log("Assistant's response:", response);
             return res.json({ answer: response });
         } else {
+            console.log(req.body);
+            let assistant_id = '' ;
+            if (!req.body.shop) assistant_id = process.env.ASSISTANT_ID;
+            else assistant_id = process.env.ASSISTANT_ID_SHOP;
             console.log('Prompt:', req.body.prompt);
-            const response = await queryAssistant(req.body.prompt);
+            const response = await queryAssistant(req.body.prompt,assistant_id);
             console.log("Assistant's response:", response);
             return res.json({ answer: response });
         }
