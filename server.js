@@ -50,6 +50,23 @@ const smartSearch = async (req, res) => {
     }
 };
 app.post('/openai', upload.single('audio'), smartSearch);
+app.get('/app-proxy', (req, res) => {
+    console.log('received from app proxy');
+    const html = `
+    <html>
+    <body>  
+    <h1>App Proxy</h1>
+    </body>
+    </html>
+    `;
+    res.send(html);
+})
+
+
+
+
+
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
