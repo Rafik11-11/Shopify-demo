@@ -51,16 +51,18 @@ const smartSearch = async (req, res) => {
 };
 app.post('/openai', upload.single('audio'), smartSearch);
 app.get('/app-proxy', (req, res) => {
-    console.log('received from app proxy');
-    const html = `
-    <html>
-    <body>  
-    <h1>App Proxy</h1>
-    </body>
-    </html>
+    console.log('Received request from app proxy');
+    const liquidContent = `
+    {% layout 'theme' %}
+    <div>
+        <h1>App Proxy</h1>
+        <!-- Your additional content here -->
+    </div>
     `;
-    res.send(html);
-})
+    res.setHeader('Content-Type', 'application/liquid');
+    res.send(liquidContent);
+});
+
 
 
 
